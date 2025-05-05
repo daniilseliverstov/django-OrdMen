@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}
+    Base Title
+  {% endblock title%}</title>
+</head>
+
+{% include 'components/navbar.html'%}
+
+<body>
+{% block body %}
+  Base body 1
+{% endblock body%}
+</body>
+
+<footer>
+  &copy; Django 2025 OrdMan©
+</footer>
+
+</html>
