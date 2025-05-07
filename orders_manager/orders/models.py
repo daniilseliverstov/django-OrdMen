@@ -19,12 +19,15 @@ class Order(models.Model):
 
     order_number = models.CharField(max_length=20, verbose_name="Номер заказа")
     status = models.CharField(
-        choices=ORDER_STATUS, default="accepted", verbose_name="Статус заказа"
+        choices=ORDER_STATUS,
+        max_length=20,
+        default="accepted",
+        verbose_name="Статус заказа",
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     update_at = models.DateTimeField(auto_now=True, verbose_name="Изменен")
-    month = models.CharField(max_length=10, verbose_name="Месяц", blank=True)
-    week = models.IntegerField(verbose_name="Неделя", blank=True)
+    month = models.IntegerField(max_length=10, verbose_name="Месяц", null=True)
+    week = models.IntegerField(verbose_name="Неделя", null=True)
     manager = models.CharField(
         max_length=20,
         verbose_name="Менеджер. Создать отдельную модель в приложении Пользователей",
@@ -42,7 +45,7 @@ class Order(models.Model):
         max_digits=5, decimal_places=2, verbose_name="Масса", default=0
     )
     package = models.IntegerField(
-        verbose_name="Количество упаковок", blank=True, default=0
+        verbose_name="Количество упаковок", null=True, default=0
     )
 
     mdf = models.BooleanField(verbose_name="МДФ", default=False)
@@ -55,20 +58,20 @@ class Order(models.Model):
     )
 
     quadrature = models.DecimalField(
-        max_digits=5, decimal_places=2, verbose_name="Квадратура", blank=True, default=0
+        max_digits=5, decimal_places=2, verbose_name="Квадратура", null=True, default=0
     )
     serial = models.DecimalField(
         max_digits=5,
         decimal_places=2,
         verbose_name="Серийная продукция",
-        blank=True,
+        null=True,
         default=0,
     )
     portal = models.DecimalField(
         max_digits=5,
         decimal_places=2,
         verbose_name="Каминные порталы",
-        blank=True,
+        null=True,
         default=0,
     )
     reclamation = models.CharField(
